@@ -9,3 +9,45 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  firstName    String   @db.VarChar(255)
+  lastName     String   @db.VarChar(255)
+  company      String   @db.VarChar(255)
+  createdAt    DateTime @default(now())
+  role         Role     @default(USER)
+  passwordHash String
+  posts        Post[]
+
+  @@map(name: "users")
+}
+
+model Post {
+  id               Int        @id @default(autoincrement())
+  title            String     @db.VarChar(255)
+  company          String     @db.VarChar(255)
+  description      String
+  requiredSkills   String[]
+  niceToHaveSkills String[]
+  url              String
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+  deadline         DateTime?
+  status           PostStatus
+  user             User?      @relation(fields: [userId], references: [id])
+  userId           Int?
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum PostStatus {
+  WAITING
+  APPROVED
+  REJECTED
+  SPONSORED
+}
