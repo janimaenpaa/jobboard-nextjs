@@ -1,4 +1,4 @@
-import { Post, PostStatus, User } from '@prisma/client';
+import { Post, PostStatus } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
 import nc from 'next-connect';
 import prisma from '../../../lib/prisma';
@@ -8,7 +8,6 @@ import prisma from '../../../lib/prisma';
 const handler = nc<NextApiRequest, NextApiResponse>()
   .get(async (req, res) => {
     const posts = await prisma.post.findMany();
-    console.log(posts);
     res.json(posts);
   })
   .post(async (req, res) => {
@@ -27,7 +26,7 @@ const handler = nc<NextApiRequest, NextApiResponse>()
 
     const post = await prisma.post.create({ data: newPost });
 
-    res.json(post);
+    res.status(201).json({ data: post });
   });
 
 export default handler;
