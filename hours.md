@@ -7,4 +7,6 @@
 | 6.5.  | 1    | Projektin alustus                      |
 | 7.5.  | 4    | Next.js tutustuminen, tutoriaalin teko |
 | 7.5.  | 1    | Endpointien tekoa                      |
-|  yht  | 10   |                                        |
+| 8.5.  | 1    | Endpointien tekoa                      |
+| 9.5.  | 1    | Tutustuminen Theme UI -tyylikirjastoon |
+|  yht  | 12   |                                        |
