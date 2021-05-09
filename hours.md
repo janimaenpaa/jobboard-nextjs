@@ -8,5 +8,6 @@
 | 7.5.  | 4    | Next.js tutustuminen, tutoriaalin teko |
 | 7.5.  | 1    | Endpointien tekoa                      |
 | 8.5.  | 1    | Endpointien tekoa                      |
-| 9.5.  | 1    | Tutustuminen Theme UI -tyylikirjastoon |
-|  yht  | 12   |                                        |
+| 9.5.  | 1    | Tutustuminen Chakra UI -tyylikirjastoon |
+| 9.5.  | 3    | Teeman ja komponenttien teko           |
+|  yht  | 15   |                                        |
