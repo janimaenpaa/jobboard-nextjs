@@ -1,5 +1,7 @@
+import { Flex } from '@chakra-ui/layout';
 import { Post } from '@prisma/client';
 import React from 'react';
+import PostItem from './PostItem';
 
 interface Props {
   posts: Post[];
@@ -8,11 +10,11 @@ interface Props {
 const PostList = ({ posts }: Props) => {
   //console.log(props)
   return (
-    <div>
+    <Flex direction="column">
       {posts.map((post) => (
-        <p key={`post-${post.id}`}>{post.title}</p>
+        <PostItem key={`post-${post.id}`} post={post} />
       ))}
-    </div>
+    </Flex>
   );
 };
 
