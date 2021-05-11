@@ -1,7 +1,7 @@
 import { Post, PostStatus } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
 import nc from 'next-connect';
-import prisma from '../../../lib/prisma';
+import prisma from '../../../libs/prisma';
 
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
