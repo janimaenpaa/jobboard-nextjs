@@ -1,30 +1,30 @@
-import { Post, PrismaClient } from '@prisma/client';
+import { Post } from '@prisma/client';
 import { Flex, Heading } from '@chakra-ui/layout';
 import React from 'react';
 import PostList from '../components/PostList';
-import superjson from 'superjson';
+import useSWR from 'swr';
+import fetch from '../libs/fetch';
 
-interface Props {
-  posts: Post[];
-}
+const App = () => {
+  const { data, error } = useSWR<Post[]>('/api/posts', fetch);
 
-const App = ({ posts }: Props) => {
+  if (!data) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
   return (
     <Flex alignItems="center" justifyContent="center" direction="column">
       <Heading m={20}>Test</Heading>
-      <PostList posts={posts} />
+      <PostList posts={data} />
     </Flex>
   );
 };
 
 export default App;
 
-export const getServerSideProps = async () => {
-  const prisma = new PrismaClient();
+/* export const getStaticProps = async () => {
   const posts = await prisma.post.findMany();
-  prisma.$disconnect();
   console.log(posts);
   return {
     props: { posts: posts },
   };
 };
+ */
