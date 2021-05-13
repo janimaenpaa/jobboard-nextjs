@@ -1,11 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from '@chakra-ui/button';
-import { Box, Flex, Heading, Link as StyledLink } from '@chakra-ui/layout';
+import { Box, Flex } from '@chakra-ui/layout';
+import { useRouter } from 'next/router';
 
 interface Props {}
 
 const Navigation = (props: Props) => {
+  const router = useRouter();
+
   return (
     <Flex
       as="nav"
@@ -23,7 +26,11 @@ const Navigation = (props: Props) => {
         </Link>
       </Flex>
       <Box>
-        <Button bg="transparent" border="1px">
+        <Button
+          bg="transparent"
+          border="1px"
+          onClick={() => router.push('/posts/new')}
+        >
           Post A Job
         </Button>
       </Box>
