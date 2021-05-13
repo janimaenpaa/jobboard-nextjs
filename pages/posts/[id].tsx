@@ -3,13 +3,18 @@ import useSWR from 'swr';
 //import fetch from '../../libs/fetch';
 import { Post as PostType } from '@prisma/client';
 import PostPage from '../../components/PostPage';
+import { Center } from '@chakra-ui/layout';
 
 interface Props {
   post: PostType;
 }
 
 const Post = ({ post }: Props) => {
-  return <PostPage post={post} />;
+  return (
+    <Center>
+      <PostPage post={post} />
+    </Center>
+  );
 };
 
 export async function getStaticPaths() {
