@@ -1,6 +1,7 @@
-import { Button } from '@chakra-ui/button';
-import { Box, Flex, Heading, Text } from '@chakra-ui/layout';
 import React from 'react';
+import Link from 'next/link';
+import { Button } from '@chakra-ui/button';
+import { Box, Flex, Heading, Link as StyledLink } from '@chakra-ui/layout';
 
 interface Props {}
 
@@ -12,13 +13,14 @@ const Navigation = (props: Props) => {
       justify="space-between"
       wrap="wrap"
       padding="1rem"
-      position="fixed"
       background="white"
       width="100%"
       {...props}
     >
-      <Flex align="center" ml={5} mr={5}>
-        <Heading as="h1">Jobs</Heading>
+      <Flex align="center" ml={4} mr={4}>
+        <Link href="/">
+          <a style={{ fontSize: '2rem', fontWeight: 'bold' }}>Jobs</a>
+        </Link>
       </Flex>
       <Box>
         <Button bg="transparent" border="1px">
