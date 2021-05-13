@@ -4,11 +4,12 @@ import React from 'react';
 import PostList from '../components/PostList';
 import useSWR from 'swr';
 import fetch from '../libs/fetch';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const App = () => {
   const { data, error } = useSWR<Post[]>('/api/posts', fetch);
 
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <LoadingSpinner />;
   if (error) return <div>Error: {error}</div>;
   return (
     <Flex alignItems="center" justifyContent="center" direction="column">
