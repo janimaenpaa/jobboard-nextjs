@@ -11,4 +11,5 @@
 | 9.5.  | 1    | Tutustuminen Chakra UI -tyylikirjastoon |
 | 9.5.  | 3    | Teeman ja komponenttien teko            |
 | 11.5. | 2    | Käyttöliittymän ja komponenttien tekoa  |
-|  yht  | 17   |                                         |
+| 13.5. | 3    | Käyttöliittymän ja komponenttien tekoa  |
+|  yht  | 20   |                                         |

@@ -3,6 +3,8 @@ import { Box, Flex, Heading, Text } from '@chakra-ui/layout';
 import { Post } from '@prisma/client';
 import Card from '../Card';
 import { useRouter } from 'next/router';
+import SkillButton from '../SkillBar/SkillButton';
+import SkillBar from '../SkillBar';
 
 interface Props {
   post: Post;
@@ -25,19 +27,23 @@ const PostItem = ({ post }: Props) => {
   } = post;
 
   const goToPostPage = () => router.push(`/posts/${id}`);
-  
+
   return (
-    <Card p="4" m="4" onClick={goToPostPage}>
+    <Card p="4" m="4" maxWidth="800px" onClick={goToPostPage}>
       <Heading as="h3" size="md">
-        {post.title}
+        {title}
       </Heading>
       <Heading as="h2" size="sm" color="gray.500">
-        {post.company}
+        {company}
       </Heading>
       <Flex>
-        {post.createdAt} {post.deadline ? `| deadline: ${post.deadline}` : ''}
+        {createdAt} {deadline ? `| deadline: ${deadline}` : ''}
       </Flex>
-      <Text>{post.description}</Text>
+      <Text>{description}</Text>
+      <SkillBar
+        requiredSkills={requiredSkills}
+        niceToHaveSkills={niceToHaveSkills}
+      />
     </Card>
   );
 };
