@@ -29,7 +29,7 @@ const PostItem = ({ post }: Props) => {
   const goToPostPage = () => router.push(`/posts/${id}`);
 
   return (
-    <Card p="4" m="4" maxWidth="800px" onClick={goToPostPage}>
+    <Card p="4" m="4" maxWidth="800px" cursor="pointer" onClick={goToPostPage}>
       <Heading as="h3" size="md">
         {title}
       </Heading>
