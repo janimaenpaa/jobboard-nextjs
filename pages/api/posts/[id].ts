@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import nc from 'next-connect';
 import prisma from '../../../libs/prisma';
+import superjson from 'superjson';
 
 export const getPostById = async (id: number) => {
   const post = await prisma.post.findUnique({
@@ -9,7 +10,10 @@ export const getPostById = async (id: number) => {
 
   if (!post) return null;
 
-  return post;
+  // DateTimes won't work without this when server side rendering
+  const serializedPost = superjson.serialize(post);
+
+  return serializedPost.json;
 };
 
 const handler = nc<NextApiRequest, NextApiResponse>()
