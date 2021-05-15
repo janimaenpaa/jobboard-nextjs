@@ -1,4 +1,10 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { useRouter } from 'next/router';
+import { createPost } from '../../pages/api/posts';
+
 import { Button } from '@chakra-ui/button';
 import {
   FormControl,
@@ -9,11 +15,9 @@ import {
 import { Input } from '@chakra-ui/input';
 import { Heading, Text } from '@chakra-ui/layout';
 import { Textarea } from '@chakra-ui/textarea';
+
 import Card from '../Card';
 import ListInput from './ListInput';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 
 interface Props {}
 
@@ -31,15 +35,29 @@ const NewPostForm = (props: Props) => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
+  const router = useRouter();
 
   const [requiredSkill, setRequiredSkill] = useState<string>('');
   const [requiredSkills, setRequiredSkills] = useState<string[]>([]);
   const [niceToHaveSkill, setNiceToHaveSkill] = useState<string>('');
   const [niceToHaveSkills, setNiceToHaveSkills] = useState<string[]>([]);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const newPost = { ...data, requiredSkills, niceToHaveSkills };
-    console.log(newPost);
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newPost),
+    });
+
+    if (response.ok) {
+      router.push('/');
+    } else {
+      console.log(response.json());
+    }
   };
 
   return (
