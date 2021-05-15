@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Button } from '@chakra-ui/button';
 import {
   FormControl,
@@ -7,12 +8,16 @@ import {
 import { Input } from '@chakra-ui/input';
 import { Heading, Text } from '@chakra-ui/layout';
 import { Textarea } from '@chakra-ui/textarea';
-import React from 'react';
 import Card from '../Card';
 
 interface Props {}
 
 const NewPostForm = (props: Props) => {
+  const [requiredSkill, setRequiredSkill] = useState<string>('');
+  const [requiredSkills, setRequiredSkills] = useState<string[]>([]);
+  const [niceToHaveSkill, setNiceToHaveSkill] = useState<string>('');
+  const [niceToHaveSkills, setNiceToHaveSkills] = useState<string[]>([]);
+
   return (
     <Card maxWidth="800px" padding="4">
       <Heading as="h2">Post a Job</Heading>
