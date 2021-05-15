@@ -7,7 +7,6 @@ import { prisma } from '../../../libs/prisma';
 
 export const getPosts = async () => {
   const posts = await prisma.post.findMany();
-  prisma.$disconnect()
   return posts;
 };
 
