@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { AppPropsType } from 'next/dist/next-server/lib/utils';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, Container } from '@chakra-ui/react';
 import theme from '../styles/theme';
 import Navigation from '../components/Navigation';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -25,7 +25,9 @@ const App = ({ Component, pageProps }: AppPropsType) => {
   return (
     <ChakraProvider theme={theme}>
       <Navigation />
-      {pageLoading ? <LoadingSpinner /> : <Component {...pageProps} />}
+      <Container mb="4" maxW="container.lg">
+        {pageLoading ? <LoadingSpinner /> : <Component {...pageProps} />}
+      </Container>
     </ChakraProvider>
   );
 };
