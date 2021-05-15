@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '@chakra-ui/button';
 import {
   FormControl,
+  FormErrorMessage,
   FormHelperText,
   FormLabel,
 } from '@chakra-ui/form-control';
@@ -10,14 +11,36 @@ import { Heading, Text } from '@chakra-ui/layout';
 import { Textarea } from '@chakra-ui/textarea';
 import Card from '../Card';
 import ListInput from './ListInput';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
 interface Props {}
 
+const schema = yup.object().shape({
+  company: yup.string().required().min(2),
+  title: yup.string().required(),
+  url: yup.string().url().required('link must be a valid url'),
+  deadline: yup.date().min(new Date(), 'deadline must be later than today'),
+  description: yup.string().required(),
+});
+
 const NewPostForm = (props: Props) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(schema) });
+
   const [requiredSkill, setRequiredSkill] = useState<string>('');
   const [requiredSkills, setRequiredSkills] = useState<string[]>([]);
   const [niceToHaveSkill, setNiceToHaveSkill] = useState<string>('');
   const [niceToHaveSkills, setNiceToHaveSkills] = useState<string[]>([]);
+
+  const onSubmit = (data) => {
+    const newPost = { ...data, requiredSkills, niceToHaveSkills };
+    console.log(newPost);
+  };
 
   return (
     <Card padding="4">
@@ -28,18 +51,21 @@ const NewPostForm = (props: Props) => {
         enim eu, porttitor neque. Praesent est orci, congue ac nisi vitae,
         consectetur aliquet lacus.
       </Text>
-      <form>
-        <FormControl id="company" isRequired pt="4">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FormControl id="company" isRequired isInvalid={errors.company} pt="4">
           <FormLabel>Company</FormLabel>
-          <Input placeholder="Company" />
+          <Input {...register('company')} placeholder="Company" />
+          <FormErrorMessage>{errors.company?.message}</FormErrorMessage>
         </FormControl>
-        <FormControl id="title" isRequired pt="4">
+        <FormControl id="title" isRequired isInvalid={errors.title} pt="4">
           <FormLabel>Job title</FormLabel>
-          <Input placeholder="Job title" />
+          <Input {...register('title')} placeholder="Job title" />
+          <FormErrorMessage>{errors.title?.message}</FormErrorMessage>
         </FormControl>
-        <FormControl id="url" isRequired pt="4">
+        <FormControl id="url" isRequired isInvalid={errors.url} pt="4">
           <FormLabel>Link for applying</FormLabel>
-          <Input placeholder="Link" />
+          <Input {...register('url')} placeholder="Link" />
+          <FormErrorMessage>{errors.url?.message}</FormErrorMessage>
         </FormControl>
         <FormControl id="requiredSkills" pt="4">
           <FormLabel>Required skills</FormLabel>
@@ -68,13 +94,28 @@ const NewPostForm = (props: Props) => {
             colorScheme="green"
           />
         </FormControl>
-        <FormControl id="deadline" isRequired pt="4">
+        <FormControl
+          id="deadline"
+          isRequired
+          isInvalid={errors.deadline}
+          pt="4"
+        >
           <FormLabel>Deadline</FormLabel>
-          <Input placeholder="Deadline date" />
+          <Input {...register('deadline')} placeholder="Deadline date" />
+          <FormErrorMessage>{errors.deadline?.message}</FormErrorMessage>
         </FormControl>
-        <FormControl id="description" isRequired pt="4">
+        <FormControl
+          id="description"
+          isRequired
+          isInvalid={errors.description}
+          pt="4"
+        >
           <FormLabel>Description</FormLabel>
-          <Textarea placeholder="Type job description here" />
+          <Textarea
+            {...register('description')}
+            placeholder="Type job description here"
+          />
+          <FormErrorMessage>{errors.description?.message}</FormErrorMessage>
         </FormControl>
         <Button type="submit" colorScheme="pink" mt="2" isFullWidth>
           Submit
