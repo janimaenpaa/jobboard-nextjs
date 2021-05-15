@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import nc from 'next-connect';
-import prisma from '../../../libs/prisma';
+import {prisma} from '../../../libs/prisma';
 import superjson from 'superjson';
 
 export const getPostById = async (id: number) => {
@@ -13,6 +13,8 @@ export const getPostById = async (id: number) => {
   // DateTimes won't work without this when server side rendering
   const serializedPost = superjson.serialize(post);
 
+  prisma.$disconnect()
+  
   return serializedPost.json;
 };
 

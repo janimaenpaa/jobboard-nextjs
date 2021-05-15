@@ -1,12 +1,13 @@
 import { Post, PostStatus } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
 import nc from 'next-connect';
-import prisma from '../../../libs/prisma';
+import { prisma } from '../../../libs/prisma';
 
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 export const getPosts = async () => {
   const posts = await prisma.post.findMany();
+  prisma.$disconnect()
   return posts;
 };
 
