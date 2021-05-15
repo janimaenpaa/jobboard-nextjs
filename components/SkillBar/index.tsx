@@ -10,11 +10,11 @@ interface Props {
 const SkillBar = ({ requiredSkills, niceToHaveSkills }: Props) => {
   return (
     <Flex wrap="wrap">
-      {requiredSkills?.map((skill) => (
-        <SkillButton skill={skill} isRequired />
+      {requiredSkills?.map((skill, index) => (
+        <SkillButton key={index} skill={skill} required />
       ))}
-      {niceToHaveSkills?.map((skill) => (
-        <SkillButton skill={skill} />
+      {niceToHaveSkills?.map((skill, index) => (
+        <SkillButton key={index} skill={skill} />
       ))}
     </Flex>
   );
