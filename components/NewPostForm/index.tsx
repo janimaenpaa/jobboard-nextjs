@@ -9,6 +9,7 @@ import { Input } from '@chakra-ui/input';
 import { Heading, Text } from '@chakra-ui/layout';
 import { Textarea } from '@chakra-ui/textarea';
 import Card from '../Card';
+import ListInput from './ListInput';
 
 interface Props {}
 
@@ -45,14 +46,14 @@ const NewPostForm = (props: Props) => {
           <FormHelperText mb="2">
             Skills an applicant should have
           </FormHelperText>
-          <Input placeholder="Required skills" />
+          <ListInput placeholder="Required skills" />
         </FormControl>
         <FormControl id="niceToHaveSkills" pt="4">
           <FormLabel>Nice to have skills</FormLabel>
           <FormHelperText mb="2">
             Skills that are not required, but would be nice to have
           </FormHelperText>
-          <Input placeholder="Required skills" />
+          <ListInput placeholder="Nice to have skills" colorScheme="green"/>
         </FormControl>
         <FormControl id="deadline" isRequired pt="4">
           <FormLabel>Deadline</FormLabel>
