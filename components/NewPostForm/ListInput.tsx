@@ -5,8 +5,7 @@ import {
   InputProps,
   InputRightAddon,
 } from '@chakra-ui/input';
-import { Box, Flex } from '@chakra-ui/layout';
-import { Button } from '@chakra-ui/button';
+import { Flex } from '@chakra-ui/layout';
 import ItemButton from './ItemButton';
 
 interface Props extends InputProps {}
@@ -16,11 +15,15 @@ const ListInput = ({ colorScheme, ...props }: Props) => {
   const [listItem, setListItem] = useState<string>('');
 
   const submitItem = () => {
-    setList([...list, listItem]);
-    setListItem('');
+    if (!list.includes(listItem)) {
+      setList([...list, listItem]);
+      setListItem('');
+    } else {
+      console.log('Item already exists in the list');
+    }
   };
 
-  const deleteItem = (item) => {
+  const deleteItem = (item: string) => {
     const filteredList = list.filter((i) => i !== item);
     setList(filteredList);
   };
