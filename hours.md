@@ -12,4 +12,7 @@
 | 9.5.  | 3    | Teeman ja komponenttien teko            |
 | 11.5. | 2    | Käyttöliittymän ja komponenttien tekoa  |
 | 13.5. | 3    | Käyttöliittymän ja komponenttien tekoa  |
-|  yht  | 20   |                                         |
+| 15.5. | 4    | Käyttöliittymän ja komponenttien tekoa  |
+| 15.5. | 1    | API-endpointien säätöä                  |
+| 15.5. | 1    | Sovelluksen deployment                  |
+|  yht  | 26   |                                         |
