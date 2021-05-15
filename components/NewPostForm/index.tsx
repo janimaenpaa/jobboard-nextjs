@@ -20,7 +20,7 @@ const NewPostForm = (props: Props) => {
   const [niceToHaveSkills, setNiceToHaveSkills] = useState<string[]>([]);
 
   return (
-    <Card maxWidth="800px" padding="4">
+    <Card padding="4">
       <Heading as="h2">Post a Job</Heading>
       <Text as="sub">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
@@ -46,14 +46,27 @@ const NewPostForm = (props: Props) => {
           <FormHelperText mb="2">
             Skills an applicant should have
           </FormHelperText>
-          <ListInput placeholder="Required skills" />
+          <ListInput
+            list={requiredSkills}
+            listItem={requiredSkill}
+            setList={setRequiredSkills}
+            setListItem={setRequiredSkill}
+            placeholder="Required skills"
+          />
         </FormControl>
         <FormControl id="niceToHaveSkills" pt="4">
           <FormLabel>Nice to have skills</FormLabel>
           <FormHelperText mb="2">
             Skills that are not required, but would be nice to have
           </FormHelperText>
-          <ListInput placeholder="Nice to have skills" colorScheme="green"/>
+          <ListInput
+            list={niceToHaveSkills}
+            listItem={niceToHaveSkill}
+            setList={setNiceToHaveSkills}
+            setListItem={setNiceToHaveSkill}
+            placeholder="Nice to have skills"
+            colorScheme="green"
+          />
         </FormControl>
         <FormControl id="deadline" isRequired pt="4">
           <FormLabel>Deadline</FormLabel>

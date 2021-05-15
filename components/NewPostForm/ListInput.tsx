@@ -8,14 +8,23 @@ import {
 import { Flex } from '@chakra-ui/layout';
 import ItemButton from './ItemButton';
 
-interface Props extends InputProps {}
+interface Props extends Omit<InputProps, 'list'> {
+  list: string[];
+  listItem: string;
+  setList: React.Dispatch<React.SetStateAction<string[]>>;
+  setListItem: React.Dispatch<React.SetStateAction<string>>;
+}
 
-const ListInput = ({ colorScheme, ...props }: Props) => {
-  const [list, setList] = useState<string[]>([]);
-  const [listItem, setListItem] = useState<string>('');
-
+const ListInput = ({
+  list,
+  listItem,
+  setList,
+  setListItem,
+  colorScheme,
+  ...props
+}: Props) => {
   const submitItem = () => {
-    if (!list.includes(listItem)) {
+    if (!list.includes(listItem) && listItem.length !== 0) {
       setList([...list, listItem]);
       setListItem('');
     } else {

@@ -7,17 +7,6 @@ interface Props extends ButtonProps {
 }
 
 const ItemButton = ({ colorScheme, text, ...props }: Props) => {
-  {
-    /* <Box
-      mt="2"
-      mr="2"
-      p="1"
-      px="3"
-      {...props}
-    >
-      {text}
-    </Box> */
-  }
   return (
     <Button
       colorScheme={colorScheme ? colorScheme : 'blue'}
