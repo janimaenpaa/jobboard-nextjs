@@ -1,5 +1,5 @@
 import { Post } from '@prisma/client';
-import { Flex, Heading } from '@chakra-ui/layout';
+import { Center, Flex, Heading } from '@chakra-ui/layout';
 import React from 'react';
 import PostList from '../components/PostList';
 import useSWR from 'swr';
@@ -12,9 +12,13 @@ const App = () => {
   if (!data) return <LoadingSpinner />;
   if (error) return <div>Error: {error}</div>;
   return (
-    <Flex alignItems="center" justifyContent="center" direction="column">
-      <Heading m={20}>Test</Heading>
-      <PostList posts={data} />
+    <Flex direction="column">
+      <Heading mt="10" mb="6" ml="4">
+        Jobs
+      </Heading>
+      <Center>
+        <PostList posts={data} />
+      </Center>
     </Flex>
   );
 };
