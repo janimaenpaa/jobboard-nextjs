@@ -22,12 +22,29 @@ const App = ({ Component, pageProps }: AppPropsType) => {
     router.events.on('routeChangeComplete', handleComplete);
     router.events.on('routeChangeError', handleComplete);
   }, [router]);
+
+  if (router.pathname.startsWith('/admin')) {
+    return (
+      <ChakraProvider theme={theme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    );
+  }
+
+  const ifOnAdminPage = router.pathname.startsWith('/admin');
+
   return (
     <ChakraProvider theme={theme}>
-      <Navigation />
-      <Container mb="4" maxW="container.lg">
-        {pageLoading ? <LoadingSpinner /> : <Component {...pageProps} />}
-      </Container>
+      {ifOnAdminPage ? (
+        <Component {...pageProps} />
+      ) : (
+        <>
+          <Navigation />
+          <Container mb="4" maxW="container.lg">
+            {pageLoading ? <LoadingSpinner /> : <Component {...pageProps} />}
+          </Container>
+        </>
+      )}
     </ChakraProvider>
   );
 };
