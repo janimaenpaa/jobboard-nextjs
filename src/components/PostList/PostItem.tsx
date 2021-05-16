@@ -5,6 +5,7 @@ import Card from '../Card';
 import { useRouter } from 'next/router';
 import SkillButton from '../SkillBar/SkillButton';
 import SkillBar from '../SkillBar';
+import { formatDate } from '../../libs/dates';
 
 interface Props {
   post: Post;
@@ -37,7 +38,8 @@ const PostItem = ({ post }: Props) => {
         {company}
       </Heading>
       <Flex>
-        {createdAt} {deadline ? `| deadline: ${deadline}` : ''}
+        published {formatDate(createdAt)}{' '}
+        {deadline ? `| deadline ${formatDate(deadline)}` : ''}
       </Flex>
       <Text>{description}</Text>
       <SkillBar

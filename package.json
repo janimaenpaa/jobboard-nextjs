@@ -15,6 +15,7 @@
     "@hookform/resolvers": "^2.5.0",
     "@prisma/client": "^2.22.1",
     "babel-plugin-superjson-next": "^0.3.0",
+    "date-fns": "^2.21.3",
     "framer-motion": "^4.1.13",
     "next": "10.2.0",
     "next-connect": "^0.10.1",
