@@ -10,7 +10,7 @@ interface Props {
 const PostPage = ({ post }: Props) => {
   console.log(post);
   return (
-    <Card maxWidth="800px" padding="4">
+    <Card padding="4">
       <Heading as="h2">
         {post.title}
       </Heading>

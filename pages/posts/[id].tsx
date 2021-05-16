@@ -3,19 +3,35 @@ import useSWR from 'swr';
 //import fetch from '../../libs/fetch';
 import { Post as PostType } from '@prisma/client';
 import PostPage from '../../components/PostPage';
-import { Center } from '@chakra-ui/layout';
+import { Center, Flex } from '@chakra-ui/layout';
 import { getPosts } from '../api/posts';
 import { getPostById } from '../api/posts/[id]';
+import { Button } from '@chakra-ui/button';
+import { ArrowBackIcon } from '@chakra-ui/icons';
+import { useRouter } from 'next/router';
 
 interface Props {
   post: PostType;
 }
 
 const Post = ({ post }: Props) => {
+  const router = useRouter();
   return (
-    <Center>
-      <PostPage post={post} />
-    </Center>
+    <Flex flexDirection="column">
+      <Button
+        onClick={() => router.push('/')}
+        my="4"
+        width="100px"
+        colorScheme="blue"
+        opacity="0.8"
+        leftIcon={<ArrowBackIcon height={5} width={5} />}
+      >
+        Back
+      </Button>
+      <Center>
+        <PostPage post={post} />
+      </Center>
+    </Flex>
   );
 };
 
