@@ -1,13 +1,24 @@
 import React from 'react';
-import { Flex, Text } from '@chakra-ui/layout';
+import { Flex, FlexProps, Text } from '@chakra-ui/layout';
 
-interface Props {}
+interface Props extends FlexProps {
+  username?: string;
+}
 
-const UserInfo = (props: Props) => {
+const UserInfo = ({ username = 'User', ...props }: Props) => {
   const lightBlue = '#2f3748';
   return (
-    <Flex width="100%" background={lightBlue} borderRadius="5" p="2">
-      <Text>user</Text>
+    <Flex
+      background={lightBlue}
+      height="40px"
+      borderRadius="5"
+      minWidth="80px"
+      p="2"
+      alignItems="center"
+      justifyContent="center"
+      {...props}
+    >
+      <Text>{username}</Text>
     </Flex>
   );
 };
