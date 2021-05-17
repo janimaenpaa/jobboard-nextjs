@@ -17,6 +17,8 @@ import {
 } from '@chakra-ui/react';
 import Sidebar from './Sidebar/Sidebar';
 import Topbar from './Topbar';
+import PostTable from './PostTable';
+import { getPosts } from '../../services/PostService';
 
 interface Props {}
 
@@ -25,6 +27,7 @@ const Dashboard = (props: Props) => {
   const [open, setOpen] = useState(true);
   const sidebarWidth = '260px';
   const user = 'User';
+  const { data, error } = getPosts();
 
   const handleToggle = () => {
     setOpen(!open);
@@ -38,8 +41,11 @@ const Dashboard = (props: Props) => {
     }
   }, [isMobile]);
 
+  if (!data) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
   return (
-    <Flex height="100vh" bgColor="#f9fafb">
+    <Flex minHeight="100vh" bgColor="#f9fafb">
       <Topbar isMobile={isMobile} handleToggle={handleToggle} />
       {open && (
         <Sidebar
@@ -51,7 +57,16 @@ const Dashboard = (props: Props) => {
           width={sidebarWidth}
         />
       )}
-      {/* <Box ml={isMobile ? 0 : sidebarWidth}>Test</Box> */}
+      <Flex
+        marginLeft={isMobile ? 0 : sidebarWidth}
+        mt="50px"
+        p="10"
+        flexDirection="column"
+        width="100%"
+      >
+        <Heading>Posts</Heading>
+        <PostTable posts={data} />
+      </Flex>
     </Flex>
   );
 };

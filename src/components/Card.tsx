@@ -8,6 +8,8 @@ const Card = (props: BoxProps) => {
       border="1px"
       borderRadius="5px"
       borderColor="gray.300"
+      bg="white"
+      p="2"
       {...props}
     >
       {props.children}
