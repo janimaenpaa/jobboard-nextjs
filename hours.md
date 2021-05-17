@@ -19,4 +19,5 @@
 | 15.5. | 1    | Käyttöliittymän ja komponenttien tekoa               |
 | 16.5. | 2    | Käyttöliittymän ja komponenttien tekoa               |
 | 16.5. | 4    | Hallintapaneelin suunnittelua ja komponenttien tekoa |
-|  yht  | 34   |                                                      |
+| 17.5. | 4    | Hallintapaneelin suunnittelua ja komponenttien tekoa |
+|  yht  | 38   |                                                      |
