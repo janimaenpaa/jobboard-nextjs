@@ -20,6 +20,7 @@ const Topbar = ({ isMobile, handleToggle }: Props) => {
       justifyContent="space-between"
       alignItems="center"
       padding="6"
+      zIndex="9998"
     >
       <HamburgerIcon
         height={6}

@@ -41,6 +41,7 @@ const Sidebar = ({
       px={6}
       top={0}
       w={isMobile ? 'full' : width}
+      zIndex="9999"
     >
       {isMobile ? (
         <MobileMenu user={user} handleToggle={handleToggle} />
