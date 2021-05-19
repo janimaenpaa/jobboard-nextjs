@@ -5,11 +5,12 @@ import { Select } from '@chakra-ui/select';
 import { Table, Tbody, Td, Tfoot, Th, Thead, Tr } from '@chakra-ui/table';
 import React, { useMemo } from 'react';
 import { useTable, useSortBy } from 'react-table';
+import { DELETE, PUT } from '../../lib/api';
 import { formatDate } from '../../lib/dates';
 import Card from '../Card';
 
 interface Props {
-  posts: any;
+  posts: Post[];
 }
 
 const PostTable = ({ posts }: Props) => {
@@ -33,29 +34,43 @@ const PostTable = ({ posts }: Props) => {
       {
         Header: 'Status',
         accessor: 'status',
-        Cell: ({ value }) => (
-          <Select
-            value={value}
-            onChange={(value) => console.log(value)}
-            width="100%"
-            cursor="pointer"
-            minWidth={110}
-          >
-            <option value={PostStatus.APPROVED}>Approved</option>
-            <option value={PostStatus.REJECTED}>Rejected</option>
-            <option value={PostStatus.WAITING}>Waiting</option>
-            <option value={PostStatus.SPONSORED}>Sponsored</option>
-          </Select>
-        ),
+        Cell: ({ value, row }) => {
+          const { id } = row.original;
+          return (
+            <Select
+              value={value}
+              onChange={(event) => {
+                handleStatusUpdate(id, event.target.value);
+              }}
+              width="100%"
+              cursor="pointer"
+              minWidth={110}
+            >
+              <option value={PostStatus.APPROVED}>Approved</option>
+              <option value={PostStatus.WAITING}>Waiting</option>
+              <option value={PostStatus.SPONSORED}>Sponsored</option>
+              <option value={PostStatus.REJECTED}>Rejected</option>
+            </Select>
+          );
+        },
       },
       {
         accessor: 'id',
         Cell: ({ value }) => (
           <Flex wrap="wrap" width="100">
-            <Button ml="1" mb="1" colorScheme="blue">
+            <Button
+              ml="1"
+              mb="1"
+              colorScheme="blue"
+              onClick={() => console.log('Edit')}
+            >
               Edit
             </Button>
-            <Button ml="1" colorScheme="red">
+            <Button
+              ml="1"
+              colorScheme="red"
+              onClick={() => handleDelete(value)}
+            >
               Delete
             </Button>
           </Flex>
@@ -73,6 +88,15 @@ const PostTable = ({ posts }: Props) => {
       },
       useSortBy
     );
+
+  const handleDelete = (id: number) => {
+    const request = DELETE(`posts/${id}`);
+    console.log(request);
+  };
+
+  const handleStatusUpdate = async (id: number, status: any) => {
+    const updatedPost = await PUT(`posts/${id}`, { status: status });
+  };
 
   return (
     <Card mt="2" overflowX="auto">
