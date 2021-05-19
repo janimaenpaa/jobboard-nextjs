@@ -30,6 +30,29 @@ const handler = nc<NextApiRequest, NextApiResponse>()
 
     res.json(post);
   })
+  .put(async (req, res) => {
+    const id = Number(req.query.id);
+
+    const post = await prisma.post.findUnique({
+      where: { id: id },
+    });
+
+    if (!post) {
+      res.status(404);
+      res.json({ error: 'Post not found' });
+      return;
+    }
+
+    try {
+      const updatedPost = await prisma.post.update({
+        where: { id: id },
+        data: { ...req.body },
+      });
+      res.json(updatedPost);
+    } catch (error) {
+      res.status(400).json({ error });
+    }
+  })
   .delete(async (req, res) => {
     const id = Number(req.query.id);
 
