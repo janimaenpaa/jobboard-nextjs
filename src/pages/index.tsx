@@ -3,7 +3,7 @@ import { Center, Flex, Heading } from '@chakra-ui/layout';
 import React from 'react';
 import PostList from '../components/PostList';
 import useSWR from 'swr';
-import fetch from '../libs/fetch';
+import fetch from '../lib/fetch';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const App = () => {

@@ -5,7 +5,7 @@ import Card from '../Card';
 import { useRouter } from 'next/router';
 import SkillButton from '../SkillBar/SkillButton';
 import SkillBar from '../SkillBar';
-import { formatDate } from '../../libs/dates';
+import { formatDate } from '../../lib/dates';
 
 interface Props {
   post: Post;

@@ -1,6 +1,6 @@
 import { Post } from '.prisma/client';
 import useSWR from 'swr';
-import fetcher from '../libs/fetch';
+import fetcher from '../lib/fetch';
 
 export const getPosts = () => {
   return useSWR<Post[]>('/api/posts', fetcher);

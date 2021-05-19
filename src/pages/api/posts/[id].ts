@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import nc from 'next-connect';
-import { prisma } from '../../../libs/prisma';
+import { prisma } from '../../../lib/prisma';
 import superjson from 'superjson';
 
 export const getPostById = async (id: number) => {

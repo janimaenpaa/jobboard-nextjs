@@ -5,7 +5,7 @@ import { Select } from '@chakra-ui/select';
 import { Table, Tbody, Td, Tfoot, Th, Thead, Tr } from '@chakra-ui/table';
 import React, { useMemo } from 'react';
 import { useTable, useSortBy } from 'react-table';
-import { formatDate } from '../../libs/dates';
+import { formatDate } from '../../lib/dates';
 import Card from '../Card';
 
 interface Props {
