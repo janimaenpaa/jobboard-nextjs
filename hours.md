@@ -20,4 +20,6 @@
 | 16.5. | 2    | Käyttöliittymän ja komponenttien tekoa               |
 | 16.5. | 4    | Hallintapaneelin suunnittelua ja komponenttien tekoa |
 | 17.5. | 4    | Hallintapaneelin suunnittelua ja komponenttien tekoa |
-|  yht  | 38   |                                                      |
+| 18.5. | 2    | Hallintapaneelin käyttöliittymän tekoa               |
+| 19.5. | 3    | API:n laajentamista, käyttöliittymän yhdistys apiin  |
+|  yht  | 43   |                                                      |
