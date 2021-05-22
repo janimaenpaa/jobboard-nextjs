@@ -4,8 +4,7 @@ import Dashboard from '../../components/Dashboard';
 interface Props {}
 
 const Admin = (props: Props) => {
-
-  return <div><Dashboard /></div>;
+  return <Dashboard />;
 };
 
 export default Admin;
