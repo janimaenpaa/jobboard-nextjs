@@ -33,6 +33,7 @@ const SideBarLink = ({ href, title, isActive, ...props }: Props) => {
       bg={darkBlue}
       _hover={{ bg: lightBlue }}
       _active={{ bg: lightBlue }}
+      _focus={{ outline: 'none' }}
       onClick={() => router.push(href)}
       justifyContent="flex-start"
       {...props}
