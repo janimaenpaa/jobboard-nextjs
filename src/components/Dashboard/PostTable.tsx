@@ -3,6 +3,7 @@ import { Button } from '@chakra-ui/button';
 import { Box, Flex } from '@chakra-ui/layout';
 import { Select } from '@chakra-ui/select';
 import { Table, Tbody, Td, Tfoot, Th, Thead, Tr } from '@chakra-ui/table';
+import { useRouter } from 'next/router';
 import React, { useMemo } from 'react';
 import { useTable, useSortBy } from 'react-table';
 import { DELETE, PUT } from '../../lib/api';
@@ -15,6 +16,7 @@ interface Props {
 
 const PostTable = ({ posts }: Props) => {
   const data = useMemo(() => posts, []);
+  const router = useRouter();
 
   const columns = React.useMemo(
     () => [
@@ -62,7 +64,7 @@ const PostTable = ({ posts }: Props) => {
               ml="1"
               mb="1"
               colorScheme="blue"
-              onClick={() => console.log('Edit')}
+              onClick={() => router.push(`/admin/posts/${value}`)}
             >
               Edit
             </Button>
