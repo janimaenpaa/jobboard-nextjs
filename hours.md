@@ -23,4 +23,5 @@
 | 18.5. | 2    | Hallintapaneelin käyttöliittymän tekoa               |
 | 19.5. | 3    | API:n laajentamista, käyttöliittymän yhdistys apiin  |
 | 22.5. | 2    | Käyttöliittymän päivittämistä ja refaktorointia      |
-|  yht  | 45   |                                                      |
+| 23.5. | 2    | Slateen tutustumista, Slaten alustus Typescriptilla  |
+|  yht  | 47   |                                                      |
