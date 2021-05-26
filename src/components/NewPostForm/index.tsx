@@ -18,6 +18,7 @@ import { Textarea } from '@chakra-ui/textarea';
 
 import Card from '../Card';
 import ListInput from './ListInput';
+import PostEditor from '../PostEditor';
 
 interface Props {}
 
@@ -133,6 +134,7 @@ const NewPostForm = (props: Props) => {
             {...register('description')}
             placeholder="Type job description here"
           />
+          <PostEditor />
           <FormErrorMessage>{errors.description?.message}</FormErrorMessage>
         </FormControl>
         <Button type="submit" colorScheme="pink" mt="2" isFullWidth>
